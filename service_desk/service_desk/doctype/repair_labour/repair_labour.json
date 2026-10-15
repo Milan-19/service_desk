@@ -16,21 +16,25 @@
   {
    "fieldname": "description",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Description"
   },
   {
    "fieldname": "hours",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Hours"
   },
   {
    "fieldname": "rate",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Rate"
   },
   {
    "fieldname": "amount",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Amount",
    "read_only": 1
   }
@@ -39,7 +43,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-10-15 11:10:43.724905",
+ "modified": "2026-10-15 18:03:19.700659",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Repair Labour",
