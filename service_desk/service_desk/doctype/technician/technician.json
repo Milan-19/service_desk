@@ -42,7 +42,7 @@
    "options": "\nMobile\nLaptop\nDesktop\nPrinter\nTV\nHome Appliance\nGeneral"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "enabled",
    "fieldtype": "Check",
    "label": "Enabled?"
@@ -51,7 +51,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-15 17:14:27.695039",
+ "modified": "2026-10-17 10:25:43.558789",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Technician",
