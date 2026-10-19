@@ -70,7 +70,7 @@
   {
    "fieldname": "brand",
    "fieldtype": "Data",
-   "label": "brand"
+   "label": "Brand"
   },
   {
    "fieldname": "model_no",
@@ -121,8 +121,10 @@
    "default": "Received",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
-   "options": "\nReceived\nDiagnosing\nWaiting for Parts\nIn Repair\nReady for Delivery\nDelivered\nCancelled"
+   "options": "\nReceived\nDiagnosing\nWaiting for Parts\nIn Repair\nReady for Delivery\nDelivered\nCancelled",
+   "read_only": 1
   },
   {
    "fieldname": "tables_section",
@@ -169,7 +171,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-15 18:00:53.880233",
+ "modified": "2026-10-19 12:40:05.281427",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Repair Job",
