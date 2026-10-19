@@ -51,7 +51,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-17 10:25:43.558789",
+ "modified": "2026-10-19 17:47:36.457677",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Technician",
@@ -69,6 +69,21 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "Service Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Service Front Desk"
+  },
+  {
+   "read": 1,
+   "role": "Service Technician"
   }
  ],
  "row_format": "Dynamic",
