@@ -12,9 +12,42 @@ frappe.ui.form.on("Repair Job", {
 		});
 	},
 
-	// refresh(frm) {
-	// 	console.log("Repair Job form refreshed:", frm.doc.name);
-	// },
+	refresh(frm) {
+		if (!frm.is_new() && frm.doc.docstatus < 2) {
+			frm.add_custom_button(__("Update Status"), () => {
+				frappe.prompt(
+					{
+						fieldname: "status",
+						label: __("Status"),
+						fieldtype: "Select",
+						options: "Received\nDiagnosed\nIn Repair\nReady\nDelivered",
+						reqd: 1,
+						default: frm.doc.status,
+					},
+					(values) => {
+						frm.call("update_status", { status: values.status }).then(() => {
+							frm.reload_doc();
+						});
+					},
+					__("Update Status"),
+				);
+			});
+		}
+	},
+
+	technician(frm) {
+		if (!frm.doc.technician) return;
+		frappe.call({
+			method: "service_desk.service_desk.doctype.repair_job.repair_job.get_technician_workload",
+			args: { technician: frm.doc.technician },
+			callback: (r) => {
+				frappe.show_alert({
+					message: __("{0} has {1} open job(s)", [frm.doc.technician, r.message]),
+					indicator: "blue",
+				});
+			},
+		});
+	},
 });
 
 frappe.ui.form.on("Repair Part", {
