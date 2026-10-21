@@ -11,15 +11,16 @@ app_license = "mit"
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "service_desk",
-# 		"logo": "/assets/service_desk/logo.png",
-# 		"title": "Service Desk",
-# 		"route": "/service_desk",
-# 		"has_permission": "service_desk.api.permission.has_app_permission",
-# 	}
-# ]
+add_to_apps_screen = [
+	{
+		"name": "service_desk",
+		"logo": "/assets/service_desk/images/logo.png",
+		"title": "Service Desk",
+		"route": "/desk/service-desk",
+		# "has_permission": "service_desk.api.permission.has_app_permission",
+        "sequence_id": 1,
+	}
+]
 
 # The dock, the rail down the left of the desk, is a document rather than a hook. Author it in
 # Manage Dock on a developer-mode site and press Export to App, and it is written to
@@ -277,3 +278,9 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+fixtures = [
+    {
+        "dt": "Role",
+        "filters": [["name", "in", ["Service Manager", "Service Technician", "Service Front Desk"]]],
+    },
+]

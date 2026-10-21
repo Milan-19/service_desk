@@ -1,0 +1,66 @@
+{
+ "charts": [],
+ "content": "[{\"id\": \"ofbjaVA24K\", \"type\": \"header\", \"data\": {\"text\": \"\\u003cspan class=\\\"h4\\\"\\u003eWelcome to the Service Desk workspace\\u003c/span\\u003e\", \"col\": 12}}, {\"id\": \"2uP5dS62MB\", \"type\": \"paragraph\", \"data\": {\"text\": \"Click on the \\u22ef menu to edit\", \"col\": 12}}, {\"id\": \"8mILXB55EB\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Service Settings\", \"col\": 3}}, {\"id\": \"yUwDzmTj4k\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Technician\", \"col\": 3}}, {\"id\": \"sKZQMKV_58\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Repair Job\", \"col\": 3}}]",
+ "creation": "2026-10-21 11:50:41.558549",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "grid",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Service Desk",
+ "link_type": "DocType",
+ "links": [],
+ "modified": "2026-10-21 12:51:30.997553",
+ "modified_by": "Administrator",
+ "module": "Service Desk",
+ "name": "Service Desk",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Service Front Desk"
+  },
+  {
+   "role": "Service Manager"
+  },
+  {
+   "role": "Service Technician"
+  }
+ ],
+ "sequence_id": 23.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Service Settings",
+   "link_to": "Service Settings",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Technician",
+   "link_to": "Technician",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Repair Job",
+   "link_to": "Repair Job",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "standard": 1,
+ "title": "Service Desk",
+ "type": "Workspace"
+}
