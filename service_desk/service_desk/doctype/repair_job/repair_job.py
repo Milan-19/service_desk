@@ -6,7 +6,7 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import flt, getdate
 
-STATUSES = ("Received", "Diagnosed", "In Repair", "Ready", "Delivered")
+# STATUSES = ("Received", "Diagnosed", "In Repair", "Ready", "Delivered")
 
 class RepairJob(Document):
 	def validate(self):
@@ -38,18 +38,18 @@ class RepairJob(Document):
 		if not self.technician:
 			frappe.throw(_("Assign a technician before submitting."))
 
-	@frappe.whitelist()
-	def update_status(self, status):
-		self.check_permission("write")
-		if status not in STATUSES:
-			frappe.throw(_("Invalid status"))
-		self.db_set("status", status)
+	# @frappe.whitelist()
+	# def update_status(self, status):
+	# 	self.check_permission("write")
+	# 	if status not in STATUSES:
+	# 		frappe.throw(_("Invalid status"))
+	# 	self.db_set("status", status)
 
 @frappe.whitelist()
 def get_technician_workload(technician):
     frappe.has_permission("Repair Job", "read", throw=True)
     return frappe.db.count("Repair Job", {
         "technician": technician,
-        "status": ["in", ["Received", "Diagnosed", "In Repair"]],
+        "workflow_state": ["in", ["Received", "Diagnosed", "In Repair"]],
         "docstatus": ["<", 2],
     })
