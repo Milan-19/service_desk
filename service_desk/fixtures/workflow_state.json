@@ -1,0 +1,47 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": null,
+  "modified": "2026-10-22 17:10:09.351172",
+  "name": "Delivered",
+  "style": "",
+  "workflow_state_name": "Delivered"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": null,
+  "modified": "2026-10-22 17:07:38.827388",
+  "name": "Received",
+  "style": "",
+  "workflow_state_name": "Received"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": null,
+  "modified": "2026-10-22 17:08:26.631848",
+  "name": "Diagnosed",
+  "style": "",
+  "workflow_state_name": "Diagnosed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": null,
+  "modified": "2026-10-22 17:09:07.095608",
+  "name": "Ready",
+  "style": "",
+  "workflow_state_name": "Ready"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": null,
+  "modified": "2026-10-22 17:08:38.566916",
+  "name": "In Repair",
+  "style": "",
+  "workflow_state_name": "In Repair"
+ }
+]

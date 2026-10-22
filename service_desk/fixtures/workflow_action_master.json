@@ -1,0 +1,37 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-22 17:11:33.702855",
+  "name": "Mark Ready",
+  "workflow_action_name": "Mark Ready"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-22 17:11:55.239129",
+  "name": "Deliver",
+  "workflow_action_name": "Deliver"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-22 17:10:35.807480",
+  "name": "Start Diagnosis",
+  "workflow_action_name": "Start Diagnosis"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-22 17:12:29.574485",
+  "name": "Reopen",
+  "workflow_action_name": "Reopen"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-22 17:11:07.638923",
+  "name": "Start Repair",
+  "workflow_action_name": "Start Repair"
+ }
+]

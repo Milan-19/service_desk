@@ -278,9 +278,16 @@ add_to_apps_screen = [
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+# fixtures = [
+#     {
+#         "dt": "Role",
+#         "filters": [["name", "in", ["Service Manager", "Service Technician", "Service Front Desk"]]],
+#     },
+# ]
+
 fixtures = [
-    {
-        "dt": "Role",
-        "filters": [["name", "in", ["Service Manager", "Service Technician", "Service Front Desk"]]],
-    },
+    {"dt": "Role", "filters": [["name", "in", ["Service Manager", "Service Technician", "Service Front Desk"]]]},
+    {"dt": "Workflow State", "filters": [["name", "in", ["Received", "Diagnosed", "In Repair", "Ready", "Delivered"]]]},
+    {"dt": "Workflow Action Master", "filters": [["name", "in", ["Start Diagnosis", "Start Repair", "Mark Ready", "Deliver", "Reopen"]]]},
+    {"dt": "Workflow", "filters": [["name", "=", "Repair Job Workflow"]]},
 ]
