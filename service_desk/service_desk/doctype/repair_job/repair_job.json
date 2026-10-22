@@ -22,7 +22,6 @@
   "received_on",
   "expected_delivery",
   "priority",
-  "status",
   "tables_section",
   "parts",
   "labour_charges",
@@ -119,15 +118,6 @@
    "options": "\nLow\nMedium\nHigh\nUrgent"
   },
   {
-   "default": "Received",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Status",
-   "options": "\nReceived\nDiagnosing\nWaiting for Parts\nIn Repair\nReady for Delivery\nDelivered\nCancelled",
-   "read_only": 1
-  },
-  {
    "fieldname": "tables_section",
    "fieldtype": "Section Break",
    "label": "Tables"
@@ -181,7 +171,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-22 17:05:56.143594",
+ "modified": "2026-10-22 18:26:50.753830",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Repair Job",
