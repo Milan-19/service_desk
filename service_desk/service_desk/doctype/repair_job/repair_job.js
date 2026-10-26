@@ -12,28 +12,28 @@ frappe.ui.form.on("Repair Job", {
 		});
 	},
 
-	refresh(frm) {
-		if (!frm.is_new() && frm.doc.docstatus < 2) {
-			frm.add_custom_button(__("Update Status"), () => {
-				frappe.prompt(
-					{
-						fieldname: "status",
-						label: __("Status"),
-						fieldtype: "Select",
-						options: "Received\nDiagnosed\nIn Repair\nReady\nDelivered",
-						reqd: 1,
-						default: frm.doc.status,
-					},
-					(values) => {
-						frm.call("update_status", { status: values.status }).then(() => {
-							frm.reload_doc();
-						});
-					},
-					__("Update Status"),
-				);
-			});
-		}
-	},
+	// refresh(frm) {
+	// 	if (!frm.is_new() && frm.doc.docstatus < 2) {
+	// 		frm.add_custom_button(__("Update Status"), () => {
+	// 			frappe.prompt(
+	// 				{
+	// 					fieldname: "status",
+	// 					label: __("Status"),
+	// 					fieldtype: "Select",
+	// 					options: "Received\nDiagnosed\nIn Repair\nReady\nDelivered",
+	// 					reqd: 1,
+	// 					default: frm.doc.status,
+	// 				},
+	// 				(values) => {
+	// 					frm.call("update_status", { status: values.status }).then(() => {
+	// 						frm.reload_doc();
+	// 					});
+	// 				},
+	// 				__("Update Status"),
+	// 			);
+	// 		});
+	// 	}
+	// },
 
 	technician(frm) {
 		if (!frm.doc.technician) return;
