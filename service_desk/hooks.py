@@ -148,13 +148,15 @@ add_to_apps_screen = [
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
+permission_query_conditions = {
+	# "Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
+    "Repair Job": "service_desk.permissions.get_repair_job_conditions",
+}
 #
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+has_permission = {
+	# "Event": "frappe.desk.doctype.event.event.has_permission",
+    "Repair Job": "service_desk.permissions.has_repair_job_permission",
+}
 
 # Document Events
 # ---------------
