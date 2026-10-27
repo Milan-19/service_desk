@@ -11,11 +11,13 @@
   "amended_from",
   "workflow_state",
   "customer",
-  "data_begw",
+  "customer_name",
   "device_type",
   "brand",
   "model_no",
   "serial_no",
+  "under_warranty",
+  "warranty_expiry",
   "problem_description",
   "assignment_section",
   "technician",
@@ -55,15 +57,10 @@
    "reqd": 1
   },
   {
-   "fetch_from": "customer.customer_name",
-   "fieldname": "data_begw",
-   "fieldtype": "Data",
-   "label": "Customer Name",
-   "read_only": 1
-  },
-  {
    "fieldname": "device_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Device Type",
    "options": "\nMobile\nLaptop\nDesktop\nTablet\nTV\nAppliance\nOther"
   },
@@ -96,6 +93,8 @@
   {
    "fieldname": "technician",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Technician",
    "options": "Technician"
   },
@@ -114,6 +113,8 @@
    "default": "Medium",
    "fieldname": "priority",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Priority",
    "options": "\nLow\nMedium\nHigh\nUrgent"
   },
@@ -165,13 +166,34 @@
    "label": "Workflow State",
    "no_copy": 1,
    "options": "Workflow State"
+  },
+  {
+   "default": "0",
+   "fieldname": "under_warranty",
+   "fieldtype": "Check",
+   "label": "Under Warranty"
+  },
+  {
+   "depends_on": "eval:doc.under_warranty;",
+   "fieldname": "warranty_expiry",
+   "fieldtype": "Date",
+   "label": "Warranty Expiry",
+   "mandatory_depends_on": "eval:doc.under_warranty;"
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-22 18:26:50.753830",
+ "modified": "2026-10-27 17:52:32.482827",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Repair Job",
@@ -241,7 +263,11 @@
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "customer_name,serial_no",
+ "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1
 }
