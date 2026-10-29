@@ -292,4 +292,6 @@ fixtures = [
     {"dt": "Workflow State", "filters": [["name", "in", ["Received", "Diagnosed", "In Repair", "Ready", "Delivered"]]]},
     {"dt": "Workflow Action Master", "filters": [["name", "in", ["Start Diagnosis", "Start Repair", "Mark Ready", "Deliver", "Reopen"]]]},
     {"dt": "Workflow", "filters": [["name", "=", "Repair Job Workflow"]]},
+	{"dt": "Custom Field", "filters": [["name", "in", ["Sales Invoice-custom_repair_job", "Customer-custom_preferred_contact"]]]},
+    {"dt": "Property Setter", "filters": [["name", "in", ["Sales Invoice-po_no-hidden"]]]},
 ]
