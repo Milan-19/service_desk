@@ -162,13 +162,17 @@ has_permission = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	# "*": {
+	# 	"on_update": "method",
+	# 	"on_cancel": "method",
+	# 	"on_trash": "method"
+	# },
+    "Sales Invoice": {
+        "on_submit": "service_desk.billing.link_invoice_to_repair_job",
+        "on_cancel": "service_desk.billing.unlink_invoice_from_repair_job",
+    }
+}
 
 # Scheduled Tasks
 # ---------------

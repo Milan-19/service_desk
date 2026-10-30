@@ -30,7 +30,10 @@
   "totals_section",
   "total_parts",
   "total_labour",
-  "grand_total"
+  "grand_total",
+  "billing_section",
+  "sales_invoice",
+  "billed_amount"
  ],
  "fields": [
   {
@@ -187,13 +190,33 @@
    "in_list_view": 1,
    "label": "Customer Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "billing_section",
+   "fieldtype": "Section Break",
+   "label": "Billing"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "no_copy": 1,
+   "options": "Sales Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "billed_amount",
+   "fieldtype": "Currency",
+   "label": "Billed Amount",
+   "no_copy": 1,
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-27 17:52:32.482827",
+ "modified": "2026-10-30 11:51:37.281416",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Repair Job",
