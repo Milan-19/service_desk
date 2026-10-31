@@ -73,6 +73,46 @@ class RepairJob(Document):
 		self.db_set("stock_entry", stock_entry.name)
 		return stock_entry.name
 
+	@frappe.whitelist()
+	def create_invoice(self):
+		frappe.only_for(("Service Manager", "System Manager"))
+		if self.workflow_state != "Ready":
+			frappe.throw(_("An invoice can only be created when the job is Ready"))
+			
+		existing = frappe.db.exists(
+            "Sales Invoice", {"custom_repair_job": self.name, "docstatus": ["<", 2]}
+        )
+		if existing:
+			frappe.throw(_("Already invoiced: {0}").format(existing))
+			
+		labour_item = frappe.db.get_single_value("Service Settings", "labour_item")
+		if not labour_item:
+			frappe.throw(_("Set a Labour Item in Service Settings"))
+			
+		invoice = frappe.new_doc("Sales Invoice")
+		invoice.customer = self.customer
+		invoice.custom_repair_job = self.name
+		invoice.update_stock = 0
+		for row in self.parts:
+			invoice.append("items", {
+                "item_code": row.item_code,
+                "qty": row.qty,
+                "rate": row.rate,
+            })
+			
+		for row in self.labour_charges:
+			invoice.append("items", {
+                "item_code": labour_item,
+                "description": row.description,
+                "qty": row.hours,
+                "rate": row.rate,
+            })
+			
+		invoice.set_missing_values()
+		invoice.calculate_taxes_and_totals()
+		invoice.insert()
+		return invoice.name
+
 @frappe.whitelist()
 def get_technician_workload(technician):
     frappe.has_permission("Repair Job", "read", throw=True)

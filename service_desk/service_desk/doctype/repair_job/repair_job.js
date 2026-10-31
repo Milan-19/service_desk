@@ -47,6 +47,22 @@ frappe.ui.form.on("Repair Job", {
 				__("Actions"),
 			);
 		}
+
+		if (frm.doc.workflow_state === "Ready" && frappe.user.has_role("Service Manager")) {
+			frm.add_custom_button(
+				__("Create Invoice"),
+				() => {
+					if (frm.is_dirty()) {
+						frappe.msgprint(__("Please save the job first"));
+						return;
+					}
+					frm.call("create_invoice").then((r) => {
+						frappe.set_route("Form", "Sales Invoice", r.message);
+					});
+				},
+				__("Actions"),
+			);
+		}
 	},
 });
 
