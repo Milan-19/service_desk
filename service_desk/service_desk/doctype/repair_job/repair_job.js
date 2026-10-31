@@ -12,29 +12,6 @@ frappe.ui.form.on("Repair Job", {
 		});
 	},
 
-	// refresh(frm) {
-	// 	if (!frm.is_new() && frm.doc.docstatus < 2) {
-	// 		frm.add_custom_button(__("Update Status"), () => {
-	// 			frappe.prompt(
-	// 				{
-	// 					fieldname: "status",
-	// 					label: __("Status"),
-	// 					fieldtype: "Select",
-	// 					options: "Received\nDiagnosed\nIn Repair\nReady\nDelivered",
-	// 					reqd: 1,
-	// 					default: frm.doc.status,
-	// 				},
-	// 				(values) => {
-	// 					frm.call("update_status", { status: values.status }).then(() => {
-	// 						frm.reload_doc();
-	// 					});
-	// 				},
-	// 				__("Update Status"),
-	// 			);
-	// 		});
-	// 	}
-	// },
-
 	technician(frm) {
 		if (!frm.doc.technician) return;
 		frappe.call({
@@ -47,6 +24,29 @@ frappe.ui.form.on("Repair Job", {
 				});
 			},
 		});
+	},
+
+	refresh(frm) {
+		const has_parts = (frm.doc.parts || []).length > 0;
+		if (!frm.is_new() && frm.doc.docstatus === 0 && has_parts && !frm.doc.stock_entry) {
+			frm.add_custom_button(
+				__("Issue Parts"),
+				() => {
+					if (frm.is_dirty()) {
+						frappe.msgprint(__("Please save the job first"));
+						return;
+					}
+					frm.call("issue_parts").then((r) => {
+						frappe.show_alert({
+							message: __("Stock Entry {0} created", [r.message]),
+							indicator: "green",
+						});
+						frm.reload_doc();
+					});
+				},
+				__("Actions"),
+			);
+		}
 	},
 });
 

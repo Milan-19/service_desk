@@ -38,12 +38,40 @@ class RepairJob(Document):
 		if not self.technician:
 			frappe.throw(_("Assign a technician before submitting."))
 
-	# @frappe.whitelist()
-	# def update_status(self, status):
-	# 	self.check_permission("write")
-	# 	if status not in STATUSES:
-	# 		frappe.throw(_("Invalid status"))
-	# 	self.db_set("status", status)
+	@frappe.whitelist()
+	def issue_parts(self):
+		self.check_permission("write")
+		
+		if self.docstatus != 0:
+			frappe.throw(_("Parts can only be issued on a draft job"))
+		if self.stock_entry:
+			frappe.throw(_("Parts were already issued on {0}").format(self.stock_entry))
+		if not self.parts:
+			frappe.throw(_("Add at least one part first"))
+			
+		warehouse = frappe.db.get_single_value("Service Settings", "default_warehouse")
+		if not warehouse:
+			frappe.throw(_("Set a Default Warehouse in Service Settings"))
+			
+		stock_entry = frappe.new_doc("Stock Entry")
+		stock_entry.stock_entry_type = "Material Issue"
+		stock_entry.purpose = "Material Issue"
+		stock_entry.company = frappe.db.get_value("Warehouse", warehouse, "company")
+		stock_entry.remarks = _("Parts issued for {0}").format(self.name)
+		
+		
+		for row in self.parts:
+			stock_entry.append("items", {
+                "item_code": row.item_code,
+                "qty": row.qty,
+                "s_warehouse": warehouse,
+            })
+			
+		stock_entry.insert(ignore_permissions=True)
+		stock_entry.submit()
+		
+		self.db_set("stock_entry", stock_entry.name)
+		return stock_entry.name
 
 @frappe.whitelist()
 def get_technician_workload(technician):
