@@ -7,7 +7,8 @@
  "field_order": [
   "default_labour_rate",
   "warranty_days",
-  "default_warehouse"
+  "default_warehouse",
+  "labour_item"
  ],
  "fields": [
   {
@@ -25,13 +26,19 @@
    "fieldtype": "Link",
    "label": "Default Warehouse",
    "options": "Warehouse"
+  },
+  {
+   "fieldname": "labour_item",
+   "fieldtype": "Link",
+   "label": "Labour Item",
+   "options": "Item"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-10-19 17:49:05.107700",
+ "modified": "2026-10-31 11:20:47.433665",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Service Settings",
