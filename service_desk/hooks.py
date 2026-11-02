@@ -53,7 +53,10 @@ add_to_apps_screen = [
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    # "doctype" : "public/js/doctype.js",
+    "Sales Invoice": "public/js/sales_invoice.js",
+              }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_kanban_js = {"doctype" : "public/js/doctype_kanban.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -204,9 +207,10 @@ doc_events = {
 # ------------------------------
 #
 # Specify custom mixins to extend the standard doctype controller.
-# extend_doctype_class = {
-# 	"Task": "service_desk.custom.task.CustomTaskMixin"
-# }
+extend_doctype_class = {
+	# "Task": "service_desk.custom.task.CustomTaskMixin",
+    "Sales Invoice": ["service_desk.extensions.sales_invoice.RepairInvoiceExtension"],
+}
 
 # Overriding Methods
 # ------------------------------
