@@ -180,23 +180,23 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"service_desk.tasks.all"
-# 	],
-# 	"daily": [
-# 		"service_desk.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"service_desk.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"service_desk.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"service_desk.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	# "all": [
+	# 	"service_desk.tasks.all"
+	# ],
+	"daily": [
+		"service_desk.tasks.mark_overdue_jobs",
+	],
+	# "hourly": [
+	# 	"service_desk.tasks.hourly"
+	# ],
+	# "weekly": [
+	# 	"service_desk.tasks.weekly"
+	# ],
+	# "monthly": [
+	# 	"service_desk.tasks.monthly"
+	# ],
+}
 
 # Testing
 # -------
@@ -302,4 +302,5 @@ fixtures = [
     {"dt": "Workflow", "filters": [["name", "=", "Repair Job Workflow"]]},
 	{"dt": "Custom Field", "filters": [["name", "in", ["Sales Invoice-custom_repair_job", "Customer-custom_preferred_contact"]]]},
     {"dt": "Property Setter", "filters": [["name", "in", ["Sales Invoice-po_no-hidden"]]]},
+    {"dt": "Notification", "filters": [["name", "=", "Job Ready"]]},
 ]
