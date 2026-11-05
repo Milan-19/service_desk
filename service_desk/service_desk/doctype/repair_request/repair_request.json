@@ -11,9 +11,10 @@
   "phone",
   "email",
   "device_type",
-  "brand",
-  "problem_description",
   "status",
+  "brand",
+  "column_break_tufo",
+  "problem_description",
   "tracking_code",
   "repair_job"
  ],
@@ -80,12 +81,16 @@
    "label": "Repair Job",
    "options": "Repair Job",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_tufo",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-11-05 16:45:57.293272",
+ "modified": "2026-11-05 17:17:32.589396",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Repair Request",
