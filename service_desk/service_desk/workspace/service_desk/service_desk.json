@@ -1,6 +1,11 @@
 {
- "charts": [],
- "content": "[{\"id\": \"ofbjaVA24K\", \"type\": \"header\", \"data\": {\"text\": \"\\u003cspan class=\\\"h4\\\"\\u003eWelcome to the Service Desk workspace\\u003c/span\\u003e\", \"col\": 12}}, {\"id\": \"2uP5dS62MB\", \"type\": \"paragraph\", \"data\": {\"text\": \"Click on the \\u22ef menu to edit\", \"col\": 12}}, {\"id\": \"8mILXB55EB\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Service Settings\", \"col\": 3}}, {\"id\": \"yUwDzmTj4k\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Technician\", \"col\": 3}}, {\"id\": \"sKZQMKV_58\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Repair Job\", \"col\": 3}}]",
+ "charts": [
+  {
+   "chart_name": "Jobs by State",
+   "label": "Jobs by State"
+  }
+ ],
+ "content": "[{\"id\": \"ofbjaVA24K\", \"type\": \"header\", \"data\": {\"text\": \"\\u003cspan class=\\\"h4\\\"\\u003eWelcome to the Service Desk workspace\\u003c/span\\u003e\", \"col\": 12}}, {\"id\": \"2uP5dS62MB\", \"type\": \"paragraph\", \"data\": {\"text\": \"Click on the \\u22ef menu to edit\", \"col\": 12}}, {\"id\": \"62nflTNBmp\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Open Repair Jobs\", \"col\": 4}}, {\"id\": \"WXIcqGZXPw\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Jobs by State\", \"col\": 12}}, {\"id\": \"8mILXB55EB\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Service Settings\", \"col\": 3}}, {\"id\": \"yUwDzmTj4k\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Technician\", \"col\": 3}}, {\"id\": \"sKZQMKV_58\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Repair Job\", \"col\": 3}}]",
  "creation": "2026-10-21 11:50:41.558549",
  "custom_blocks": [],
  "docstatus": 0,
@@ -14,11 +19,16 @@
  "label": "Service Desk",
  "link_type": "DocType",
  "links": [],
- "modified": "2026-10-21 12:51:30.997553",
+ "modified": "2026-11-14 15:05:24.479555",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Service Desk",
- "number_cards": [],
+ "number_cards": [
+  {
+   "label": "Open Repair Jobs",
+   "number_card_name": "Open Repair Jobs"
+  }
+ ],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
