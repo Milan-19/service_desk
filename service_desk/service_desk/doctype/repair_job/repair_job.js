@@ -63,6 +63,44 @@ frappe.ui.form.on("Repair Job", {
 				__("Actions"),
 			);
 		}
+
+		if (!frm.is_new() && frm.doc.docstatus === 0) {
+			frm.add_custom_button(
+				__("Reschedule"),
+				() => {
+					const dialog = new frappe.ui.Dialog({
+						title: __("Reschedule Delivery"),
+						fields: [
+							{
+								fieldname: "new_date",
+								label: __("New Delivery Date"),
+								fieldtype: "Date",
+								reqd: 1,
+								default: frm.doc.expected_delivery,
+							},
+							{
+								fieldname: "reason",
+								label: __("Reason"),
+								fieldtype: "Small Text",
+								reqd: 1,
+							},
+						],
+						primary_action_label: __("Reschedule"),
+						primary_action(values) {
+							frm.call("reschedule_delivery", {
+								new_date: values.new_date,
+								reason: values.reason,
+							}).then(() => {
+								dialog.hide();
+								frm.reload_doc();
+							});
+						},
+					});
+					dialog.show();
+				},
+				__("Actions"),
+			);
+		}
 	},
 });
 

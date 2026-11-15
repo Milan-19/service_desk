@@ -113,6 +113,21 @@ class RepairJob(Document):
 		invoice.insert()
 		return invoice.name
 
+	@frappe.whitelist()
+	def reschedule_delivery(self, new_date, reason):
+		self.check_permission("write")
+		if self.docstatus != 0:
+			frappe.throw(_("Only draft jobs can be rescheduled"))
+		if getdate(new_date) < getdate(self.received_on):
+			frappe.throw(_("The new date cannot be before the received date"))
+			
+		old_date = self.expected_delivery
+		self.db_set("expected_delivery", new_date)
+		self.add_comment(
+            "Comment",
+            _("Delivery moved from {0} to {1}. Reason: {2}").format(old_date, new_date, reason),
+        )
+
 @frappe.whitelist()
 def get_technician_workload(technician):
     frappe.has_permission("Repair Job", "read", throw=True)
