@@ -8,6 +8,7 @@ from frappe.utils import flt, getdate
 
 # STATUSES = ("Received", "Diagnosed", "In Repair", "Ready", "Delivered")
 
+
 class RepairJob(Document):
 	def validate(self):
 		self.validate_dates()
@@ -23,7 +24,6 @@ class RepairJob(Document):
 		for row in self.labour_charges:
 			if not row.rate:
 				row.rate = flt(default_rate)
-
 
 	def calculate_totals(self):
 		for row in self.parts:
@@ -41,35 +41,37 @@ class RepairJob(Document):
 	@frappe.whitelist()
 	def issue_parts(self):
 		self.check_permission("write")
-		
+
 		if self.docstatus != 0:
 			frappe.throw(_("Parts can only be issued on a draft job"))
 		if self.stock_entry:
 			frappe.throw(_("Parts were already issued on {0}").format(self.stock_entry))
 		if not self.parts:
 			frappe.throw(_("Add at least one part first"))
-			
+
 		warehouse = frappe.db.get_single_value("Service Settings", "default_warehouse")
 		if not warehouse:
 			frappe.throw(_("Set a Default Warehouse in Service Settings"))
-			
+
 		stock_entry = frappe.new_doc("Stock Entry")
 		stock_entry.stock_entry_type = "Material Issue"
 		stock_entry.purpose = "Material Issue"
 		stock_entry.company = frappe.db.get_value("Warehouse", warehouse, "company")
 		stock_entry.remarks = _("Parts issued for {0}").format(self.name)
-		
-		
+
 		for row in self.parts:
-			stock_entry.append("items", {
-                "item_code": row.item_code,
-                "qty": row.qty,
-                "s_warehouse": warehouse,
-            })
-			
+			stock_entry.append(
+				"items",
+				{
+					"item_code": row.item_code,
+					"qty": row.qty,
+					"s_warehouse": warehouse,
+				},
+			)
+
 		stock_entry.insert(ignore_permissions=True)
 		stock_entry.submit()
-		
+
 		self.db_set("stock_entry", stock_entry.name)
 		return stock_entry.name
 
@@ -78,36 +80,40 @@ class RepairJob(Document):
 		frappe.only_for(("Service Manager", "System Manager"))
 		if self.workflow_state != "Ready":
 			frappe.throw(_("An invoice can only be created when the job is Ready"))
-			
-		existing = frappe.db.exists(
-            "Sales Invoice", {"custom_repair_job": self.name, "docstatus": ["<", 2]}
-        )
+
+		existing = frappe.db.exists("Sales Invoice", {"custom_repair_job": self.name, "docstatus": ["<", 2]})
 		if existing:
 			frappe.throw(_("Already invoiced: {0}").format(existing))
-			
+
 		labour_item = frappe.db.get_single_value("Service Settings", "labour_item")
 		if not labour_item:
 			frappe.throw(_("Set a Labour Item in Service Settings"))
-			
+
 		invoice = frappe.new_doc("Sales Invoice")
 		invoice.customer = self.customer
 		invoice.custom_repair_job = self.name
 		invoice.update_stock = 0
 		for row in self.parts:
-			invoice.append("items", {
-                "item_code": row.item_code,
-                "qty": row.qty,
-                "rate": row.rate,
-            })
-			
+			invoice.append(
+				"items",
+				{
+					"item_code": row.item_code,
+					"qty": row.qty,
+					"rate": row.rate,
+				},
+			)
+
 		for row in self.labour_charges:
-			invoice.append("items", {
-                "item_code": labour_item,
-                "description": row.description,
-                "qty": row.hours,
-                "rate": row.rate,
-            })
-			
+			invoice.append(
+				"items",
+				{
+					"item_code": labour_item,
+					"description": row.description,
+					"qty": row.hours,
+					"rate": row.rate,
+				},
+			)
+
 		invoice.set_missing_values()
 		invoice.calculate_taxes_and_totals()
 		invoice.insert()
@@ -120,19 +126,23 @@ class RepairJob(Document):
 			frappe.throw(_("Only draft jobs can be rescheduled"))
 		if getdate(new_date) < getdate(self.received_on):
 			frappe.throw(_("The new date cannot be before the received date"))
-			
+
 		old_date = self.expected_delivery
 		self.db_set("expected_delivery", new_date)
 		self.add_comment(
-            "Comment",
-            _("Delivery moved from {0} to {1}. Reason: {2}").format(old_date, new_date, reason),
-        )
+			"Comment",
+			_("Delivery moved from {0} to {1}. Reason: {2}").format(old_date, new_date, reason),
+		)
+
 
 @frappe.whitelist()
 def get_technician_workload(technician):
-    frappe.has_permission("Repair Job", "read", throw=True)
-    return frappe.db.count("Repair Job", {
-        "technician": technician,
-        "workflow_state": ["in", ["Received", "Diagnosed", "In Repair"]],
-        "docstatus": ["<", 2],
-    })
+	frappe.has_permission("Repair Job", "read", throw=True)
+	return frappe.db.count(
+		"Repair Job",
+		{
+			"technician": technician,
+			"workflow_state": ["in", ["Received", "Diagnosed", "In Repair"]],
+			"docstatus": ["<", 2],
+		},
+	)
