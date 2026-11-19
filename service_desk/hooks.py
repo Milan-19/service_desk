@@ -18,7 +18,7 @@ add_to_apps_screen = [
 		"title": "Service Desk",
 		"route": "/desk/service-desk",
 		# "has_permission": "service_desk.api.permission.has_app_permission",
-        "sequence_id": 1,
+		"sequence_id": 1,
 	}
 ]
 
@@ -54,9 +54,9 @@ add_to_apps_screen = [
 
 # include js in doctype views
 doctype_js = {
-    # "doctype" : "public/js/doctype.js",
-    "Sales Invoice": "public/js/sales_invoice.js",
-              }
+	# "doctype" : "public/js/doctype.js",
+	"Sales Invoice": "public/js/sales_invoice.js",
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_kanban_js = {"doctype" : "public/js/doctype_kanban.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -153,12 +153,12 @@ doctype_js = {
 
 permission_query_conditions = {
 	# "Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-    "Repair Job": "service_desk.permissions.get_repair_job_conditions",
+	"Repair Job": "service_desk.permissions.get_repair_job_conditions",
 }
 #
 has_permission = {
 	# "Event": "frappe.desk.doctype.event.event.has_permission",
-    "Repair Job": "service_desk.permissions.has_repair_job_permission",
+	"Repair Job": "service_desk.permissions.has_repair_job_permission",
 }
 
 # Document Events
@@ -171,10 +171,10 @@ doc_events = {
 	# 	"on_cancel": "method",
 	# 	"on_trash": "method"
 	# },
-    "Sales Invoice": {
-        "on_submit": "service_desk.billing.link_invoice_to_repair_job",
-        "on_cancel": "service_desk.billing.unlink_invoice_from_repair_job",
-    }
+	"Sales Invoice": {
+		"on_submit": "service_desk.billing.link_invoice_to_repair_job",
+		"on_cancel": "service_desk.billing.unlink_invoice_from_repair_job",
+	}
 }
 
 # Scheduled Tasks
@@ -209,7 +209,7 @@ scheduler_events = {
 # Specify custom mixins to extend the standard doctype controller.
 extend_doctype_class = {
 	# "Task": "service_desk.custom.task.CustomTaskMixin",
-    "Sales Invoice": ["service_desk.extensions.sales_invoice.RepairInvoiceExtension"],
+	"Sales Invoice": ["service_desk.extensions.sales_invoice.RepairInvoiceExtension"],
 }
 
 # Overriding Methods
@@ -296,11 +296,23 @@ extend_doctype_class = {
 # ]
 
 fixtures = [
-    {"dt": "Role", "filters": [["name", "in", ["Service Manager", "Service Technician", "Service Front Desk"]]]},
-    {"dt": "Workflow State", "filters": [["name", "in", ["Received", "Diagnosed", "In Repair", "Ready", "Delivered"]]]},
-    {"dt": "Workflow Action Master", "filters": [["name", "in", ["Start Diagnosis", "Start Repair", "Mark Ready", "Deliver", "Reopen"]]]},
-    {"dt": "Workflow", "filters": [["name", "=", "Repair Job Workflow"]]},
-	{"dt": "Custom Field", "filters": [["name", "in", ["Sales Invoice-custom_repair_job", "Customer-custom_preferred_contact"]]]},
-    {"dt": "Property Setter", "filters": [["name", "in", ["Sales Invoice-po_no-hidden"]]]},
-    {"dt": "Notification", "filters": [["name", "=", "Job Ready"]]},
+	{
+		"dt": "Role",
+		"filters": [["name", "in", ["Service Manager", "Service Technician", "Service Front Desk"]]],
+	},
+	{
+		"dt": "Workflow State",
+		"filters": [["name", "in", ["Received", "Diagnosed", "In Repair", "Ready", "Delivered"]]],
+	},
+	{
+		"dt": "Workflow Action Master",
+		"filters": [["name", "in", ["Start Diagnosis", "Start Repair", "Mark Ready", "Deliver", "Reopen"]]],
+	},
+	{"dt": "Workflow", "filters": [["name", "=", "Repair Job Workflow"]]},
+	{
+		"dt": "Custom Field",
+		"filters": [["name", "in", ["Sales Invoice-custom_repair_job", "Customer-custom_preferred_contact"]]],
+	},
+	{"dt": "Property Setter", "filters": [["name", "in", ["Sales Invoice-po_no-hidden"]]]},
+	{"dt": "Notification", "filters": [["name", "=", "Job Ready"]]},
 ]

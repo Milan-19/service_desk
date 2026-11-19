@@ -44,7 +44,7 @@ frappe.ui.form.on("Repair Job", {
 						frm.reload_doc();
 					});
 				},
-				__("Actions"),
+				__("Actions")
 			);
 		}
 
@@ -60,7 +60,7 @@ frappe.ui.form.on("Repair Job", {
 						frappe.set_route("Form", "Sales Invoice", r.message);
 					});
 				},
-				__("Actions"),
+				__("Actions")
 			);
 		}
 
@@ -98,7 +98,7 @@ frappe.ui.form.on("Repair Job", {
 					});
 					dialog.show();
 				},
-				__("Actions"),
+				__("Actions")
 			);
 		}
 	},

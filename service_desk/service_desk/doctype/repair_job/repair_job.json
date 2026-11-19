@@ -100,7 +100,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Technician",
-   "options": "Technician"
+   "options": "Technician",
+   "search_index": 1
   },
   {
    "default": "Now",
@@ -111,7 +112,8 @@
   {
    "fieldname": "expected_delivery",
    "fieldtype": "Date",
-   "label": "Expected Delivery"
+   "label": "Expected Delivery",
+   "search_index": 1
   },
   {
    "default": "Medium",
@@ -169,7 +171,8 @@
    "hidden": 1,
    "label": "Workflow State",
    "no_copy": 1,
-   "options": "Workflow State"
+   "options": "Workflow State",
+   "search_index": 1
   },
   {
    "default": "0",
@@ -225,7 +228,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-31 11:26:11.416220",
+ "modified": "2026-11-19 11:55:31.042938",
  "modified_by": "Administrator",
  "module": "Service Desk",
  "name": "Repair Job",
